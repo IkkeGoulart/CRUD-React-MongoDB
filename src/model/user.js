@@ -1,9 +1,23 @@
 import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    cpf: String
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
+    cpf: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    }
 })
 
 const User = mongoose.models.User || mongoose.model('User', userSchema)

@@ -46,6 +46,7 @@ body {
 .input-area button {
   border: none;
   height: 30px;
+  align-self: center;
   background-color: #5A69B2;
   transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -65,13 +66,20 @@ body {
 
 .label-input>span {
   display: flex;
-  justify-content: space-between;
-  align-items: end;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .error-input {
   color: #D64545;
-}
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;}
+
 
 .edit {
   color: #69B25A;
@@ -202,11 +210,11 @@ th {
   transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.no-btn{
+.no-btn {
   background-color: #B25A69;
 }
 
-.no-btn:hover{
+.no-btn:hover {
   background-color: #944552;
 }
 

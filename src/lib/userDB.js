@@ -9,6 +9,25 @@ export async function createUser(name, email, cpf) {
     const nomeVerificado = xss(name)
     const emailVerificado = xss(email)
     const cpfVerificado = xss(cpf)
+
+    const duplicate = await User.findOne({
+        $or: [
+            { email: emailVerificado },
+            { cpf: cpfVerificado }
+        ]
+    })
+
+    if (duplicate) {
+        return {
+            success: false,
+            duplicateFields: {
+                email: duplicate.email === emailVerificado,
+                cpf: duplicate.cpf === cpfVerificado
+
+            }
+        }
+    }
+
     const newUser = new User({
         name: nomeVerificado,
         email: emailVerificado,
@@ -16,6 +35,7 @@ export async function createUser(name, email, cpf) {
     })
     await newUser.save()
     revalidatePath('/')
+    return { success: true }
 }
 
 export async function getUsers() {
@@ -34,8 +54,8 @@ export async function updateUser(id, name, email, cpf) {
     const nameCheck = xss(name)
     const emailCheck = xss(email)
 
-    await User.findByIdAndUpdate(id, 
-        { name: nameCheck, email: emailCheck, cpf }, 
+    await User.findByIdAndUpdate(id,
+        { name: nameCheck, email: emailCheck, cpf },
         { runValidator: true })
     revalidatePath('/')
 }

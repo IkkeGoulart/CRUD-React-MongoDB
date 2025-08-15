@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Modal from "./Modal"
 import FormInput from "./FormInput"
-import { deleteUserControl, updateUserControl } from "@/controler/usuarioController"
+import { deleteUserControl, updateUserControl } from "@/controler/userController"
 import Input from "./Input"
 
 export default function TableUsers({ users }) {
