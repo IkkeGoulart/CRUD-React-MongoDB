@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Input from "./Input";
 import { addUser } from "@/controler/userController";
+import { formatCPF } from "@/app/utils/formatCPF";
 
 export default function FormInput({ title, button }) {
     const [name, setName] = useState('')
@@ -30,7 +31,7 @@ export default function FormInput({ title, button }) {
             <div className="input-area">
                 <Input label={'Nome'} type={'text'} value={name} onChange={(e) => setName(e.target.value)} error={errors.name} />
                 <Input label={'Email'} type={'text'} value={email} onChange={(e) => setEmail(e.target.value)} error={errors.email}/>
-                <Input label={'CPF'} type={'text'} value={cpf} onChange={(e) => setCpf(e.target.value)} error={errors.cpf}/>
+                <Input label={'CPF'} type={'text'} value={cpf} onChange={(e) => {const formatted = formatCPF(e.target.value); setCpf(formatted)}} error={errors.cpf}/>
                 <button onClick={handleClickButton}>{button}</button>
             </div>
         </div>

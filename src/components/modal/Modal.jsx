@@ -1,3 +1,4 @@
+import "./modal.css"
 export default function Modal({ isOpen, children, closeModal}) {
     if (isOpen) {
         return (
